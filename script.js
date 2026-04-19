@@ -1,28 +1,30 @@
-function add() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
-    document.getElementById("result").innerHTML = "Addition Result: " + (a + b);
-}
+function calculateBMI() {
+    let weight = Number(document.getElementById("weight").value);
+    let height = Number(document.getElementById("height").value);
 
-function subtract() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
-    document.getElementById("result").innerHTML = "Subtraction Result: " + (a - b);
-}
-
-function multiply() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
-    document.getElementById("result").innerHTML = "Multiplication Result: " + (a * b);
-}
-
-function divide() {
-    let a = Number(document.getElementById("num1").value);
-    let b = Number(document.getElementById("num2").value);
-
-    if (b === 0) {
-        document.getElementById("result").innerHTML = "Division by zero is not allowed";
-    } else {
-        document.getElementById("result").innerHTML = "Division Result: " + (a / b);
+    if (weight <= 0 || height <= 0) {
+        document.getElementById("result").innerHTML =
+            "Please enter valid weight and height";
+        return;
     }
+
+    height = height / 100;
+
+    let bmi = weight / (height * height);
+    bmi = bmi.toFixed(2);
+
+    let category = "";
+
+    if (bmi <= 18) {
+        category = "Underweight";
+    } else if (bmi < 25) {
+        category = "Normal weight";
+    } else if (bmi <= 30) {
+        category = "Overweight";
+    } else {
+        category = "Obese";
+    }
+
+    document.getElementById("result").innerHTML =
+        "BMI: " + bmi + "<br>Status: " + category;
 }
